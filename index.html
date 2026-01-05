@@ -1,389 +1,124 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chúc Mừng Năm Mới 2026 🎊</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <style>
+        /* Viết CSS ở đây */
+        body {
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-    body {
-      background: linear-gradient(135deg, #c00000, #ff9900, #ffd700, #c00000);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      height: 100vh;
-      overflow: hidden;
-      font-family: 'Segoe UI', 'Times New Roman', serif;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-    }
+        .card {
+            background: white;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            text-align: center;
+        }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+        }
 
-    /* Hoa mai / đào rơi */
-    .petal {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: radial-gradient(circle, #ffd700, #ff9900);
-      border-radius: 50%;
-      opacity: 0.8;
-      pointer-events: none;
-      animation: fall linear forwards;
-    }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 60%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            overflow: hidden;
+        }
 
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+        .content {
+            padding: 20px;
+        }
 
-    /* Chữ chúc mừng */
-    .title {
-      font-size: clamp(2rem, 8vw, 5rem);
-      font-weight: 900;
-      text-shadow: 
-        0 0 10px #fff,
-        0 0 20px #fff,
-        0 0 30px #ff0,
-        0 0 40px #ff0,
-        0 0 50px #ff8800;
-      animation: glow 2s infinite alternate, fadeInUp 2s forwards;
-      opacity: 0;
-      margin-bottom: 1.5rem;
-    }
+        .name {
+            font-size: 24px;
+            color: #333;
+            margin: 0 0 5px 0;
+        }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0; }
-      to   { text-shadow: 0 0 20px #fff, 0 0 40px #ff0, 0 0 60px #ff8800, 0 0 80px #ff4400; }
-    }
+        .title {
+            color: #666;
+            margin: 0 0 15px 0;
+        }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+        .description {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-    .subtitle {
-      font-size: clamp(1rem, 4vw, 2rem);
-      font-weight: 300;
-      letter-spacing: 3px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      margin-top: 1rem;
-      animation: fadeIn 3s 0.5s forwards;
-      opacity: 0;
-    }
+        /* Thêm style cho skills và button */
+        .skills {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+        .skills li {
+            background: #e8f4f8;
+            color: #3498db;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
 
-    .wish {
-      margin-top: 2rem;
-      font-size: clamp(1rem, 3.5vw, 1.8rem);
-      line-height: 1.6;
-      max-width: 90%;
-      animation: fadeIn 4s 1s forwards;
-      opacity: 0;
-    }
-
-    .btn-music {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.3);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      transition: all 0.3s;
-    }
-
-    .btn-music:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.1);
-    }
-
-    /* Canvas pháo hoa */
-    #fireworks {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-  </style>
+        .btn:hover {
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-  <button class="btn-music" id="musicBtn">🎵</button>
-
-  <h1 class="title">CHÚC MỪNG NĂM MỚI<br>2026</h1>
-  <p class="subtitle">Bính Ngọ • An Khang – Thịnh Vượng – Hạnh Phúc</p>
-  
-  <div class="wish">
-    🌸 Kính chúc bạn và gia đình:<br>
-    <b>Năm mới Bình An</b>,<br>
-    <b>Vạn sự Như Ý</b>,<br>
-    <b>Tâm an – Thân khỏe – Tài đến – Lộc về</b>!<br>
-    <br>
-    <i>— Thuthuuthu kính chúc —</i>
-  </div>
-
-  <canvas id="fireworks"></canvas>
-
-  <script>
-    // === TẠO HOA MAI RƠI ===
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      
-      // Vị trí ngẫu nhiên ngang
-      const startX = Math.random() * window.innerWidth;
-      petal.style.left = ${startX}px;
-      petal.style.top = -10px;
-      
-      // Kích thước & màu ngẫu nhiên (mai vàng / đào hồng)
-      const size = 6 + Math.random() * 10;
-      const color = Math.random() > 0.5 
-        ? radial-gradient(circle, #ffd700, #ff9900)  // mai
-        : radial-gradient(circle, #ff9ec1, #ff6699); // đào
-      petal.style.width = ${size}px;
-      petal.style.height = ${size}px;
-      petal.style.background = color;
-      
-      // Thời gian rơi ngẫu nhiên
-      const duration = 5 + Math.random() * 8;
-      petal.style.animationDuration = ${duration}s;
-      
-      document.body.appendChild(petal);
-      
-      // Xóa sau khi rơi xong
-      setTimeout(() => {
-        petal.remove();
-      }, duration * 1000);
-    }
-
-    // Tạo hoa mỗi 200ms
-    setInterval(createPetal, 200);
-
-    // === PHÁO HOA ===
-    const canvas = document.getElementById('fireworks');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    class Firework {
-      constructor(x, y, targetX, targetY) {
-        this.x = x;
-        this.y = y;
-        this.targetX = targetX;
-        this.targetY = targetY;
-        this.speed = 3 + Math.random() * 3;
-        this.angle = Math.atan2(targetY - y, targetX - x);
-        this.vx = Math.cos(this.angle) * this.speed;
-        this.vy = Math.sin(this.angle) * this.speed;
-        this.radius = 1;
-        this.alpha = 1;
-        this.trail = [];
-        this.trailLength = 5;
-      }
-
-      update() {
-        this.trail.push({x: this.x, y: this.y, alpha: this.alpha});
-        if (this.trail.length > this.trailLength) this.trail.shift();
-
-        this.x += this.vx;
-        this.y += this.vy;
-        this.alpha -= 0.005;
-      }
-
-      draw() {
-        // Vẽ đuôi
-        for (let i = 0; i < this.trail.length; i++) {
-          const t = this.trail[i];
-          ctx.globalAlpha = t.alpha * (i / this.trail.length);
-          ctx.beginPath();
-          ctx.arc(t.x, t.y, this.radius * (i / this.trail.length), 0, Math.PI * 2);
-          ctx.fillStyle = hsl(${Math.random() * 60 + 10}, 100%, 60%);
-          ctx.fill();
-        }
-
-        // Vẽ đầu
-        ctx.globalAlpha = this.alpha;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-      }
-
-      isDone() {
-        return this.alpha <= 0 || 
-               Math.hypot(this.x - this.targetX, this.y - this.targetY) < 5;
-      }
-    }
-
-    class Particle {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.vx = (Math.random() - 0.5) * 8;
-        this.vy = (Math.random() - 0.5) * 8;
-        this.radius = Math.random() * 2 + 1;
-        this.alpha = 1;
-        this.gravity = 0.05;
-      }
-
-      update() {
-        this.vy += this.gravity;
-        this.x += this.vx;
-        this.y += this.vy;
-        this.alpha -= 0.015;
-      }
-
-      draw() {
-        ctx.globalAlpha = this.alpha;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-
-      isDone() {
-        return this.alpha <= 0;
-      }
-    }
-
-    const fireworks = [];
-    const particles = [];
-
-    function launchFirework() {
-      const x = Math.random() * canvas.width;
-      const y = canvas.height;
-      const targetX = Math.random() * canvas.width;
-      const targetY = Math.random() * canvas.height * 0.6;
-      fireworks.push(new Firework(x, y, targetX, targetY));
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Vẽ pháo hoa đang bay
-      for (let i = fireworks.length - 1; i >= 0; i--) {
-        fireworks[i].update();
-        fireworks[i].draw();
-
-        if (fireworks[i].isDone()) {
-          // Nổ!
-          const burstCount = 100 + Math.floor(Math.random() * 100);
-          const hue = Math.random() * 360;
-          for (let j = 0; j < burstCount; j++) {
-            particles.push(new Particle(
-              fireworks[i].x,
-              fireworks[i].y,
-              hsl(${hue + Math.random() * 30 - 15}, 100%, 60%)
-            ));
-          }
-          fireworks.splice(i, 1);
-        }
-      }
-
-      // Vẽ tia lửa
-      for (let i = particles.length - 1; i >= 0; i--) {
-        particles[i].update();
-        particles[i].draw();
-        if (particles[i].isDone()) {
-          particles.splice(i, 1);
-        }
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    // Bắt đầu pháo hoa
-    setInterval(launchFirework, 800);
-    animate();
-
-    // === NHẠC TẾT (tắt mặc định) ===
-    const musicBtn = document.getElementById('musicBtn');
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Tạo âm thanh Tết đơn giản (không cần file MP3 — tránh vi phạm bản quyền)
-    function playTetMelody() {
-      const notes = [
-        {freq: 523.25, duration: 0.3}, // C5
-        {freq: 587.33, duration: 0.3}, // D5
-        {freq: 659.25, duration: 0.3}, // E5
-        {freq: 698.46, duration: 0.6}, // F5
-        {freq: 659.25, duration: 0.3}, // E5
-        {freq: 587.33, duration: 0.3}, // D5
-        {freq: 523.25, duration: 0.6}, // C5
-      ];
-
-      let time = audioContext.currentTime;
-      notes.forEach(note => {
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-        osc.frequency.value = note.freq;
-        osc.type = 'sine';
-        gain.gain.setValueAtTime(0.2, time);
-        gain.gain.exponentialRampToValueAtTime(0.01, time + note.duration);
-        osc.start(time);
-        osc.stop(time + note.duration);
-        time += note.duration;
-      });
-    }
-
-    let isPlaying = false;
-    musicBtn.addEventListener('click', () => {
-      if (audioContext.state === 'suspended') {
-        audioContext.resume();
-      }
-      if (isPlaying) {
-        musicBtn.textContent = '🎵';
-        isPlaying = false;
-      } else {
-        musicBtn.textContent = '⏸️';
-        isPlaying = true;
-        playTetMelody();
-        // Lặp lại mỗi 5s
-        const interval = setInterval(() => {
-          if (isPlaying) playTetMelody();
-          else clearInterval(interval);
-        }, 5000);
-      }
-    });
-  </script>
+    <!-- Viết HTML ở đây -->
+    <div class="card">
+        <div class="header">
+            <div class="avatar">
+                <img src="avt.jpg" alt="avatar" width="80">
+            </div>
+        </div>
+        <div class="content">
+            <h2 class="name">Lê Ngọc Anh Thư</h2>
+            <p class="title">Web Developer</p>
+            <p class="description">
+                Hihihihihi
+            </p>
+            <ul class="skills">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Python</li>
+            </ul>
+            <a href="https://www.facebook.com/anh.thu.492849" class="btn" target="_blank">
+                Liên hệ
+            </a>
+        </div>
+    </div>
 </body>
 </html>
